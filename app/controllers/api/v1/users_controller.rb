@@ -1,44 +1,39 @@
 module Api
-module V1
+  module V1
+    class UsersController < ApplicationController
+      before_action :authorized, only: [:auto_login]
+      # REGISTER
+      def create
+        @user = User.create(user_params)
+        if @user.valid?
+          token = encode_token({ user_id: @user.id })
+          render json: { user: @user, token: token }
+        else
+          render json: { error: 'Invalid username or password' }
+        end
+      end
 
-class UsersController<ApplicationController
+      # LOGGING IN
+      def login
+        @user = User.find_by(username: params[:username])
 
-  before_action :authorized, only: [:auto_login]
-  # REGISTER
-  def create
-    @user = User.create(user_params)
-    if @user.valid?
-      token = encode_token({user_id: @user.id})
-      render json: {user: @user, token: token}
-    else
-      render json: {error: "Invalid username or password"}
+        if @user&.authenticate(params[:password])
+          token = encode_token({ user_id: @user.id })
+          render json: { user: @user, token: token }
+        else
+          render json: { error: 'Invalid username or password' }
+        end
+      end
+
+      def auto_login
+        render json: @user
+      end
+
+      private
+
+      def user_params
+        params.permit(:name, :username, :password, :email)
+      end
     end
   end
-
-  # LOGGING IN
-  def login
-    @user = User.find_by(username: params[:username])
-
-    if @user && @user.authenticate(params[:password])
-      token = encode_token({user_id: @user.id})
-      render json: {user: @user, token: token}
-    else
-      render json: {error: "Invalid username or password"}
-    end
-  end
-
-
-  def auto_login
-    render json: @user
-  end
-
-  private
-
-  def user_params
-    params.permit(:name,:username,:password,:email)
-  end
-
-
-end
-end
 end
