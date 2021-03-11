@@ -21,7 +21,7 @@ https://shrouded-peak-00466.herokuapp.com/api/v1/
 
 
 ## ERD
-![screenshot](./image/course tracker.png)
+![screenshot](./image/coursetracker.png)
 
 ## Features
 The main purpose of building this app is to provide back-end support to react front-end app. This api provides the following functionalities:
