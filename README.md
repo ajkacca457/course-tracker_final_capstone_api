@@ -1,4 +1,4 @@
-# Course Tracker
+# Course-Tracker-Api 
 
 The course tracker app provides a way to track details about courses a student is pursuing.  New users must create an account in order to log in.  Once authenticated, users can create new courses, can update their course progress, can see detail report of the courses he or she created.
 
