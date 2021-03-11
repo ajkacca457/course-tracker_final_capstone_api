@@ -1,14 +1,12 @@
-# Course-Tracker-Api 
+# Course-Tracker-Api
 
-The course tracker app provides a way to track details about courses a student is pursuing.  New users must create an account in order to log in.  Once authenticated, users can create new courses, can update their course progress, can see detail report of the courses he or she created.
+The course tracker app provides a way to track details about courses a student is pursuing.  New users must create an account in order to log in.  Once authenticated, users can create new courses, can update their course progress, can see detail report of the courses he or she created. The api uses jwt authentication token to make user authentication.
 
-## Planning and Execution
-When first planning my application I created the wireframe and about a dozen user stories.  Once I felt comfortable with my planning, I built the API.  Once the API was completed I worked on the front-end functionality.  Once I was satisfied with the behaviors of the front-end I completed the styling.
+## Api Endpoint
+```
+https://shrouded-peak-00466.herokuapp.com/api/v1/
 
-## Future Additions
-I would like to add a search option and a sort option which would provide the user
-with more ways to view their expense information.
-
+```
 ## Routes
 
 | Action  | What It Does                             | HTTP Verb | URL           |
@@ -18,10 +16,12 @@ with more ways to view their expense information.
 | show    | Return a single course.  | GET       | `/courses/:id` |
 | update  | Update a single course.  | PATCH     | `/courses/:id` |
 | destroy | Destroy a single course. | DELETE    | `/courses/:id` |
+| create  | Create a new user.       | POST      | `/users`       |
+| session | Create a new session.    | POST      | `/login`       |
 
 
 ## ERD
-![ERD](https://i.imgur.com/BFUv7AR.png)
+![ERD](./image/course tracker.png)
 
 
 ## Features
