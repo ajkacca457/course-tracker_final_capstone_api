@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-has_many :courses
+has_many :courses,dependent: :destroy
 
 validates :name, presence:true
 validates :username, presence:true
