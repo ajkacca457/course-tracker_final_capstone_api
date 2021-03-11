@@ -4,7 +4,9 @@ namespace "api" do
 namespace "v1" do
 
 resources :courses
-resources :users
+resource :users, only: [:create]
+post "/login", to: "users#login"
+get "/auto_login", to: "users#auto_login"
 
 end
 
