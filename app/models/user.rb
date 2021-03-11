@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+has_many :courses
 
 validates :name, presence:true
 validates :username, presence:true
