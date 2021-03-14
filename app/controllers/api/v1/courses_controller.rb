@@ -4,7 +4,7 @@ module Api
       before_action :authorized
 
       def index
-        @courses = Course.where(user_id: @user.id).order('created_at DESC')
+        @courses = Course.all
         render json: { status: 'SUCCESS', message: 'Loaded Courses', data: @courses }, status: :ok
       end
 
@@ -15,7 +15,6 @@ module Api
 
       def create
         @course = Course.new(course_params)
-        @course.user_id = @user.id
 
         if @course.save
           render json: { status: 'SUCCESS', message: 'Saved Courses', data: @course }, status: :ok

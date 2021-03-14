@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
-  belongs_to :user
+  has_one :tracker
+  has_one :user, through: :tracker
 
   validates :name, presence: true
   validates :number_of_lessons, presence: true
