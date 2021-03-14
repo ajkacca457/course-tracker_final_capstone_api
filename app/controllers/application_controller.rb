@@ -1,7 +1,6 @@
 # rubocop:disable Style/GuardClause
 # rubocop:disable Style/DoubleNegation
 class ApplicationController < ActionController::API
-  before_action :authorized
 
   def encode_token(payload)
     JWT.encode(payload, 'yourSecret')
