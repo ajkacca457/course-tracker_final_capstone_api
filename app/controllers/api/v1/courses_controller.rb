@@ -2,8 +2,10 @@ module Api
   module V1
     class CoursesController < ApplicationController
 
+      before_action :authorized
+
       def index
-        @courses = Course.all
+        @courses = Course.all.order("created_at DESC").where(user_id: @user.id)
         render json: { courses: @courses }, status: :ok
       end
 
@@ -14,6 +16,7 @@ module Api
 
       def create
         @course = Course.new(course_params)
+        @course.user_id = @user.id
 
         if @course.save
           render json: { course: @course }, status: :ok

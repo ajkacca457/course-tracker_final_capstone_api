@@ -1,6 +1,7 @@
 # rubocop:disable Style/GuardClause
 # rubocop:disable Style/DoubleNegation
 class ApplicationController < ActionController::API
+ before_action :authorized
 
   def encode_token(payload)
     JWT.encode(payload, 'yourSecret')
@@ -38,6 +39,7 @@ class ApplicationController < ActionController::API
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
 end
+
 
 # rubocop:enable Style/GuardClause
 # rubocop:enable Style/DoubleNegation
