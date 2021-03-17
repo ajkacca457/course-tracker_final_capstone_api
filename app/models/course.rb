@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-  has_one :tracker
+  has_one :tracker, dependent: :destroy
   has_one :user, through: :tracker
 
   validates :name, presence: true, length: { minimum: 6 }

@@ -4,19 +4,17 @@ module Api
       before_action :authorized
 
       def index
-        @courses = Course.all.order('created_at DESC').where(user_id: @user.id)
+        @courses = logged_in_user.courses
         render json: { courses: @courses }, status: :ok
       end
 
       def show
-        @course = Course.find(params[:id])
+        @course = logged_in_user.courses.find(params[:id])
         render json: { course: @course }, status: :ok
       end
 
       def create
-        @course = Course.new(course_params)
-        @course.user_id = @user.id
-
+        @course = logged_in_user.courses.build(course_params)
         if @course.save
           render json: { course: @course }, status: :ok
         else
@@ -25,7 +23,7 @@ module Api
       end
 
       def update
-        @course = Course.find(params[:id])
+        @course = logged_in_user.courses.find(params[:id])
 
         if @course.update_attributes(course_params)
           render json: { course: @course }, status: :ok
@@ -35,7 +33,7 @@ module Api
       end
 
       def destroy
-        @course = Course.find(params[:id])
+        @course = logged_in_user.courses.find(params[:id])
         @course.destroy
         render json: { course: @course }, status: :ok
       end
