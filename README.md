@@ -59,7 +59,7 @@ $ Open your browser and go to http://localhost:3000/
 ### Run tests
 
 ```
-    rpsec --format documentation
+    rpsec 
 ```
 
 # Authors
